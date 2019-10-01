@@ -17,6 +17,7 @@
               <thead>
                 <tr>
                   <th width="15%"> Name </th>
+                  <th width="30%"> Company </th>
                   <th width="30%"> Department </th>
                   <th width="30%"> Role </th>
                   <th width="15%"> Assign </th>
@@ -30,23 +31,25 @@
                         <td> N/A </td>
                         <td> N/A </td>
                         <td> N/A </td>
+                        <td> N/A </td>
                     </tr>
                 {% else %}
                     <tr>
                       <td> {{ employee.first_name }} {{ employee.last_name }} </td>
                       <td>
-                        {% if employee.department %}
-                          {{ employee.department.name }}
-                        {% else %}
-                          -
-                        {% endif %}
+                       
+                          {{ employee.company }}
+ 
                       </td>
                       <td>
-                        {% if employee.role %}
-                          {{ employee.role.name }}
-                        {% else %}
-                          -
-                        {% endif %}
+                        
+                          {{ employee.department }}
+ 
+                      </td>
+                      <td>
+                       
+                          {{ employee.role }}
+
                       </td>
                       <td>
                         <a href="{{ url_for('admin.assign_employee', id=employee.id) }}">

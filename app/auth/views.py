@@ -20,6 +20,9 @@ def register():
                             username=form.username.data,
                             first_name=form.first_name.data,
                             last_name=form.last_name.data,
+                            company='',
+                            department='',
+                            role='',
                             password=bcrypt.generate_password_hash(
                                 request.form['password']).decode('utf-8')
                             )

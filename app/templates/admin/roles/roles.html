@@ -16,7 +16,7 @@ title %}Roles{% endblock %} {% block body %}
               <tr>
                 <th width="15%">Name</th>
                 <th width="40%">Description</th>
-                <th width="15%">Employee Count</th>
+
                 <th width="15%">Edit</th>
                 <th width="15%">Delete</th>
               </tr>
@@ -26,11 +26,6 @@ title %}Roles{% endblock %} {% block body %}
               <tr>
                 <td>{{ role.name }}</td>
                 <td>{{ role.description }}</td>
-                <td>
-                  {% if role.employees %}
-                  {{ role.employees.count() }}
-                  {% else %} 0 {% endif %}
-                </td>
                 <td>
                   <a href="{{ url_for('admin.edit_role', id=role.id) }}">
                     <i class="fa fa-pencil"></i> Edit

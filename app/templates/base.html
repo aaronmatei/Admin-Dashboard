@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{{ title }} | Project Dream Team</title>
+    <title>{{ title }} | Ephoenix: Certeon Technologies</title>
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       rel="stylesheet"
@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand topnav" href="{{ url_for('home.homepage') }}"
-            >Project Dream Team</a
+            >Ephoenix: Certeon Technologies</a
           >
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -49,8 +49,12 @@
               <a href="{{ url_for('home.admin_dashboard') }}">Dashboard</a>
             </li>
             <li>
-              <a href="{{ url_for('admin.list_departments') }}">Departments</a>
+              <a href="{{ url_for('admin.list_companies') }}">Companies</a>
             </li>
+            <li>
+              <a href="">Departments</a>
+            </li>
+
             <li><a href="{{ url_for('admin.list_roles') }}">Roles</a></li>
             <li>
               <a href="{{ url_for('admin.list_employees') }}">Employees</a>

@@ -2,7 +2,13 @@ from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Email, EqualTo
 
-from ..models import Employee
+from ..models import Employee, Department, Company, Role
+
+alldepartments = [(department.id, department.name)
+                  for department in Department.objects()]
+allcompanies = [
+    (company.id, company.name) for company in Company.objects()]
+allroles = [(role.id, role.name) for role in Role.objects()]
 
 
 class RegistrationForm(FlaskForm):

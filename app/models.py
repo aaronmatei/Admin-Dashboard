@@ -8,30 +8,37 @@ from flask import current_app as app
 from app import db, login_manager, jwt, mail
 
 
-class Department(db.Document):
+class Company(db.Document):
     """
     Create a Department table
     """
 
     name = db.StringField(max_length=30, unique=True)
     description = db.StringField(max_length=250)
-    employees = db.ListField(db.ReferenceField('Employee'))
+    address = db.StringField(max_length=250)
+    # departments = db.ListField(db.ReferenceField('Department'))
+    # departments = db.ListField()
+    person_contact = db.StringField(unique=True)
+    email = db.StringField(unique=True)
+    first_name = db.StringField(max_length=50)
+    last_name = db.StringField(max_length=50)
+
+    def __repr__(self):
+        return '<Company: {}>'.format(self.name)
+
+
+class Department(db.Document):
+    """
+    Create a Department table
+    """
+
+    name = db.StringField(max_length=50, unique=False)
+    description = db.StringField(max_length=250)
+    # company = db.ReferenceField(Company)
+    company = db.StringField()
 
     def __repr__(self):
         return '<Department: {}>'.format(self.name)
-
-
-class Role(db.Document):
-    """
-    Create a Role table
-    """
-
-    name = db.StringField(max_length=250, unique=True)
-    description = db.StringField(max_length=250)
-    employees = db.ListField(db.ReferenceField('Employee'))
-
-    def __repr__(self):
-        return '<Role: {}>'.format(self.name)
 
 
 class Employee(UserMixin, db.Document):
@@ -45,27 +52,13 @@ class Employee(UserMixin, db.Document):
     last_name = db.StringField(max_length=50)
     password = db.StringField()
     hashed_password = db.StringField()
-    department_id = db.ReferenceField(Department)
-    role_id = db.ReferenceField(Role)
+    # company = db.ReferenceField(Company)
+    company = db.StringField()
+    # department = db.ReferenceField(Department)
+    department = db.StringField()
+    # role=db.ReferenceField('Role')
+    role = db.StringField()
     is_admin = db.BooleanField(default=False)
-
-    # @property
-    # def password(self):
-    #     """
-    #     Prevent pasword from being accessed
-    #     """
-    #     raise AttributeError('password is not a readable attribute.')
-    # @password.setter
-    # def password(self, password):
-    #     """
-    #     Set password to a hashed password
-    #     """
-    #     self.password_hash = generate_password_hash(password)
-    # def verify_password(self, password):
-    #     """
-    #     Check if hashed password matches actual password
-    #     """
-    #     return check_password_hash(self.hashed_password, password)
 
     @staticmethod
     def is_authenticated():
@@ -84,6 +77,36 @@ class Employee(UserMixin, db.Document):
 
     def __repr__(self):
         return '<Employee: {}>'.format(self.username)
+
+
+class Role(db.Document):
+    """
+    Create a Role table
+    """
+
+    name = db.StringField(max_length=250, unique=True)
+    description = db.StringField(max_length=250)
+
+    def __repr__(self):
+        return '<Role: {}>'.format(self.name)
+
+    # @property
+    # def password(self):
+    #     """
+    #     Prevent pasword from being accessed
+    #     """
+    #     raise AttributeError('password is not a readable attribute.')
+    # @password.setter
+    # def password(self, password):
+    #     """
+    #     Set password to a hashed password
+    #     """
+    #     self.password_hash = generate_password_hash(password)
+    # def verify_password(self, password):
+    #     """
+    #     Check if hashed password matches actual password
+    #     """
+    #     return check_password_hash(self.hashed_password, password)
 
 
 # Set up user_loader
